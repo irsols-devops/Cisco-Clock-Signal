@@ -2,22 +2,18 @@ Use #Ansible automation for finding #Cisco devices with Clock Signal issues. The
 
 Quick Start :
 
-    Clone this repository in the /etc/ansible directory . Assuming that you've already setup ansible first.
-
-    Populate the IP address of all network devices in the /etc/ansible/inventory file. Create a directory "clock-signal-devices" in /etc/ansible directory
-
-    Execute ansible playbook : ansible-playbook playbooks/chk_clock_issue_devices.yaml
-
-    Run list-dev-stats.sh from /etc/ansible directory to get the statistics of impacted devices , serial numbers and hardware version numbers
+1. Clone this repository in the /etc/ansible directory . Assuming that you've already setup ansible first.
+2. Populate the IP address of all network devices in the /etc/ansible/inventory file. Create a directory "clock-signal-devices" in /etc/ansible directory
+3. Execute ansible playbook : ansible-playbook playbooks/chk_clock_issue_devices.yaml
+4. Run list-dev-stats.sh from /etc/ansible directory to get the statistics of impacted devices , serial numbers and hardware version numbers
 
 Why Ansible : We chose ansible because of its agentless architecture and the fact that we would not have to worry about different cisco devices having different commandline syntax ( e.g. NXOS vs IOS ) and we can abstract that via ansible capabilities.
 
-Please note :
+Please note :     If you need support or want more customized / faster solution please reach out to devops@irsols.com
+1. This network automation tool assumes that all devices are using the same login/password in the network.
+2. This tool can also be used for validation or confirming that there are no devices requiring replacement
 
-    This network automation tool assumes that all devices are using the same login/password in the network.
-    If you need support or want more customized / faster solution please reach out to devops@irsols.com
-    This tool can also be used for validation or confirming that there are no devices requiring replacement
+References :
+1. http://www.crn.com/slide-shows/networking/300083678/10-things-you-need-to-know-about-ciscos-clock-signal-failure-and-product-replacement-priorities.htm?itc=refresh
 
-References : http://www.crn.com/slide-shows/networking/300083678/10-things-you-need-to-know-about-ciscos-clock-signal-failure-and-product-replacement-priorities.htm?itc=refresh
-
-http://www.cisco.com/c/en/us/support/web/clock-signal.html
+2. http://www.cisco.com/c/en/us/support/web/clock-signal.html
