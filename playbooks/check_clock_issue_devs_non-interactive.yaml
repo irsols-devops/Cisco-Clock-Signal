@@ -1,0 +1,27 @@
+---
+- hosts: ios_devices
+  gather_facts: yes
+  connection: local
+  vars: 
+    - filename_timestamp: "{{ansible_date_time.year}}{{ansible_date_time.month}}{{ansible_date_time.day}}{{ansible_date_time.hour}}{{ansible_date_time.minute}}{{ansible_date_time.second}}{{ansible_date_time.tz}}"
+
+  tasks:
+
+  - name: IDENTIFY | Verify target switches
+    set_fact:
+      provider:
+        host: "{{ inventory_hostname }}" 
+        username: "{{ ansible_user }}"
+        password: "{{ ansible_pass }}"
+
+  - name: IOS | Execute IOS commands show run and show ver
+    ios_command:
+      provider: "{{ provider }}"
+      commands:
+        - show run
+    register: config
+
+  - name: save | output of running configs to /etc/ansible/Ops/config_backups
+    copy:
+      content: "{{ config.stdout[0] }}"
+      dest: "/etc/ansible/Ops/config_backups/show_run_{{ inventory_hostname }}_{{ filename_timestamp }}.txt"
