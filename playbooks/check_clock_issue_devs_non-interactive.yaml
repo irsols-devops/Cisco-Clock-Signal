@@ -24,4 +24,4 @@
   - name: save | output of running configs to /etc/ansible/clock-signal-devs
     copy:
       content: "{{ config.stdout[0] }}"
-      dest: "/etc/ansible/Ops/config_backups/show_run_{{ inventory_hostname }}_{{ filename_timestamp }}.txt"
+      dest: "/etc/ansible/clock-signal-devs/show_inv_{{ inventory_hostname }}_{{ filename_timestamp }}.txt"
